@@ -1,0 +1,10 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.tsx";
+import Section1 from "../components/Section1.astro";
+---
+
+<Layout>
+	<Navbar slot="navbar"  client:only="react"  />
+	<Section1 slot="section1" />
+</Layout>
