@@ -1,6 +1,12 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
+
+interface Square {
+  id: number;
+  src: string;
+}
+
 const ShuffleHero = () => {
   return (
     <section className="w-full px-8 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-6xl mx-auto">
@@ -23,7 +29,7 @@ const ShuffleHero = () => {
   );
 };
 
-const shuffle = (array) => {
+const shuffle = (array:Square[]) => {
   let currentIndex = array.length,
     randomIndex;
 
@@ -40,7 +46,7 @@ const shuffle = (array) => {
   return array;
 };
 
-const squareData = [
+const squareData:Square[] = [
   {
     id: 1,
     src: "https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
@@ -123,13 +129,16 @@ const generateSquares = () => {
 };
 
 const ShuffleGrid = () => {
-  const timeoutRef = useRef(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);;
   const [squares, setSquares] = useState(generateSquares());
 
   useEffect(() => {
     shuffleSquares();
 
-    return () => clearTimeout(timeoutRef.current);
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+
   }, []);
 
   const shuffleSquares = () => {

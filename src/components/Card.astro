@@ -2,12 +2,12 @@
 
 export interface Props {
   id: number
-  titulo: string
+  title: string
   imagenURL: string
   descripcionCorta: string
 }
 
-const {id, titulo, imagenURL, descripcionCorta} = Astro.props
+const {id, title, imagenURL, descripcionCorta} = Astro.props
 
 ---
 
@@ -16,17 +16,18 @@ const {id, titulo, imagenURL, descripcionCorta} = Astro.props
   <div class="card bg-base-100 shadow-xl w-full hover:scale-105 transition-transform hover:shadow-2xl hover:contrast-125">
       {/* Imagen de la tarjeta */}
       <figure>
-        <img src={imagenURL} alt={titulo} />
+        <img src={imagenURL} alt={title} />
       </figure>
 
       <div class="card-body">
         {/* Titulo y descripcion de la tarjeta */}
-        <h2 class="card-title">{titulo}</h2>
+        <h2 class="card-title">{title}</h2>
         <p>{descripcionCorta}</p>
+        
 
         {/* Acciones de la tarjeta, en este caso, un botón para comprar el curso */}
         <div class="card-actions justify-end">
-          <button class="btn btn-primary">Buy Now</button>
+          <button class="btn btn-primary">Añadir a carrito</button>
         </div>
       </div>
   </div>

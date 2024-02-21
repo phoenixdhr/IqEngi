@@ -1,0 +1,35 @@
+---
+import type {Curso} from '../utils/CursoType.ts'
+
+export interface Props {
+    curso:Curso
+  }
+
+	const {curso} = Astro.props
+
+	const {id, title, imagenURL, descripcionCorta, duracionHoras, instructor}=curso;
+
+---
+
+	<div class="card lg:card-side bg-base-100 shadow-xl mb-8 lg:mb-16">
+
+		<figure >
+			<img src={imagenURL} alt={title}/>
+        </figure>
+
+		<div class="card-body">
+
+			<h2 class="card-title">{title}</h2>
+
+			<p>{descripcionCorta}</p>
+			<p>Profesor: { `${instructor.nombre} ${instructor.apellidos}`}</p>
+			<p>Duración: {duracionHoras} horas</p>
+
+
+			<!-- Boton -->
+			<div class="card-actions justify-end">
+			<button class="btn btn-primary">Añadir a Carrito</button>
+			</div>
+
+		</div>
+	</div>
