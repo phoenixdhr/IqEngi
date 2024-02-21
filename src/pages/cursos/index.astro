@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar";
+import Section1 from "../../components/Section1.astro";
+import Hero from "../../components/Hero";
+
+import CursosDestacados from "../../components/CursosDestacados.astro";
+import Section3 from "../../components/Section3.astro";
+import FondoHero from "../../components/FondoHero.astro";
+
+import Footer from "../../components/Footer.astro";
+---
+
+
+
+<Layout title={"Cursos"}>
+	<Navbar slot="navbar" client:only="react" />
+
+
+
+	<CursosDestacados slot="CursosDestacados" />
+
+
+	<Section1 slot="section1" />
+
+	<Section3 slot="section3" />
+
+
+
+	<Footer slot="footer" />
+</Layout>

@@ -42,20 +42,21 @@ export default function Example() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
 
         {/* Logo y enlace de la empresa */}
-        <div className="flex lg:flex-1">
+        <div className="flex lg:flex-1 animate-fade">
           <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">IqEngi</span>
             <img className="h-8 w-auto" src="../../public/favicon.svg" alt="Logo IqEngi" />
+            <span className="sr-only">IqEngi</span>
+
           </a>
         </div>
 
 
 
         {/* Botón para mostrar el menú en dispositivos móviles */}
-        <div className="flex lg:hidden">
+        <div className="flex lg:hidden ">
 
           {/* Botón Crear Cuenta */}
-          <button type="button" className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-4 ">Crear Cuenta</button>
+          <button type="button" className=" text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-4 ">Crear Cuenta</button>
 
           {/* Simbolo de flecha de iniciar sesión */}
           <div className=" flex items-center justify-between me-3">
@@ -87,7 +88,10 @@ export default function Example() {
 
 
           {/* Enlaces adicionales en el menú de navegación */}
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
+            Home
+          </a>
+          <a href="/cursos" className="text-sm font-semibold leading-6 text-gray-900">
             Cursos
           </a>
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
@@ -160,7 +164,7 @@ export default function Example() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center">
 
           <div className="flex">
-          <button type="button" className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ">Crear Cuenta</button>
+          <button type="button" className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 animate-jump  hover:animate-none">Crear Cuenta</button>
           </div>
 
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">

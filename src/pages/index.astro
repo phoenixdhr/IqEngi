@@ -1,10 +1,38 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar.tsx";
+import Navbar from "../components/Navbar";
 import Section1 from "../components/Section1.astro";
+import Hero from "../components/Hero";
+
+import CursosDestacados from "../components/CursosDestacados.astro";
+import Section3 from "../components/Section3.astro";
+import FondoHero from "../components/FondoHero.astro";
+
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout>
-	<Navbar slot="navbar"  client:only="react"  />
+
+
+<Layout >
+	<Navbar slot="navbar" client:only="react" />
+	<Hero slot="Hero" client:only="react" />
+	<FondoHero slot="FondoHero"/>
+
+	<CursosDestacados slot="CursosDestacados" />
+
+
 	<Section1 slot="section1" />
+
+	<Section3 slot="section3" />
+
+	<div class="bg-azul-oscuro_IQ">hola</div>
+	<div class="bg-azul-claro_IQ">hola</div>
+	<div class="bg-gris-claro_IQ">hola</div>
+	<div class="bg-gris-oscuro_IQ">hola</div>
+	<div class="bg-blanco_IQ">hola</div>
+	<div class="bg-naranja-acento_IQ">hola</div>
+	<div class="bg-verde-suave_IQ">hola</div>
+	<div>hola</div>
+
+	<Footer slot="footer" />
 </Layout>
