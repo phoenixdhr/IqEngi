@@ -14,8 +14,8 @@ import Footer from "../components/Footer.astro";
 
 
 <Layout >
-	<Navbar slot="navbar" client:only="react" />
-	<Hero slot="Hero" client:only="react" />
+	<Navbar slot="navbar" client:only=true  />
+	<Hero slot="Hero" client:load />
 	<FondoHero slot="FondoHero"/>
 
 	<CursosDestacados slot="CursosDestacados" />
@@ -32,6 +32,10 @@ import Footer from "../components/Footer.astro";
 	<div class="bg-blanco_IQ">hola</div>
 	<div class="bg-naranja-acento_IQ">hola</div>
 	<div class="bg-verde-suave_IQ">hola</div>
+
+
+
+
 	<div>hola</div>
 
 	<Footer slot="footer" />

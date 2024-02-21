@@ -12,22 +12,26 @@ const {id, title, imagenURL, descripcionCorta} = Astro.props
 ---
 
 
-<a href={`./cursos/${id}`} class="text-current no-underline">
+<a href={`./cursos/${id}`} class="text-current no-underline"  >
   <div class="card bg-base-100 shadow-xl w-full hover:scale-105 transition-transform hover:shadow-2xl hover:contrast-125">
       {/* Imagen de la tarjeta */}
-      <figure>
-        <img src={imagenURL} alt={title} />
+      <figure transition:name={`card-figure-${id.toString()}`} >
+        <img src={imagenURL} alt={title}  />
       </figure>
 
-      <div class="card-body">
+      <div class="card-body" transition:name={`card-text-${id.toString()}`} >
         {/* Titulo y descripcion de la tarjeta */}
-        <h2 class="card-title">{title}</h2>
+        <h2 class="card-title" transition:name={`card-title-${id.toString()}`}>
+          {title}
+        </h2>
         <p>{descripcionCorta}</p>
-        
+
 
         {/* Acciones de la tarjeta, en este caso, un botón para comprar el curso */}
         <div class="card-actions justify-end">
-          <button class="btn btn-primary">Añadir a carrito</button>
+          <button class="btn btn-primary" transition:name={`card-button-${id.toString()}`}>
+            Añadir a carrito
+          </button>
         </div>
       </div>
   </div>

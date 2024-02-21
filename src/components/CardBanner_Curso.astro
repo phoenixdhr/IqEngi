@@ -11,15 +11,17 @@ export interface Props {
 
 ---
 
-	<div class="card lg:card-side bg-base-100 shadow-xl mb-8 lg:mb-16">
+	<div class="card lg:card-side bg-base-100 shadow-xl mb-8 lg:mb-16"  >
 
-		<figure >
-			<img src={imagenURL} alt={title}/>
+		<figure transition:name={`card-figure-${id.toString()}`} >
+			<img src={imagenURL} alt={title}  transition:name="hero"/>
         </figure>
 
-		<div class="card-body">
+		<div class="card-body" transition:name={`card-text-${id.toString()}`} >
 
-			<h2 class="card-title">{title}</h2>
+			<h2 class="card-title" transition:name={`card-title-${id.toString()}`} >
+				{title}
+			</h2>
 
 			<p>{descripcionCorta}</p>
 			<p>Profesor: { `${instructor.nombre} ${instructor.apellidos}`}</p>
@@ -28,7 +30,9 @@ export interface Props {
 
 			<!-- Boton -->
 			<div class="card-actions justify-end">
-			<button class="btn btn-primary">Añadir a Carrito</button>
+				<button class="btn btn-primary" transition:name={`card-button-${id.toString()}`}>
+					Añadir a Carrito
+				</button>
 			</div>
 
 		</div>

@@ -3,16 +3,10 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
 import {
-  ArrowPathIcon,
   Bars3Icon,
-
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon,  CalendarIcon, NewspaperIcon, BriefcaseIcon, ArrowRightStartOnRectangleIcon} from '@heroicons/react/20/solid'
+import { ChevronDownIcon, PlayCircleIcon,  CalendarIcon, NewspaperIcon, BriefcaseIcon, ArrowRightStartOnRectangleIcon} from '@heroicons/react/20/solid'
 
 // Datos de ejemplo para productos y acciones principales
 const products = [
@@ -36,13 +30,13 @@ export default function Example() {
 
   return (
     // Cabecera del sitio
-    <header className="bg-white">
+    <header className="bg-white sticky top-0 z-50"   >
 
       {/* Navegación principal */}
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
 
         {/* Logo y enlace de la empresa */}
-        <div className="flex lg:flex-1 animate-fade">
+        <div className="flex lg:flex-1 "> {/* animate-fade*/}
           <a href="#" className="-m-1.5 p-1.5">
             <img className="h-8 w-auto" src="../../public/favicon.svg" alt="Logo IqEngi" />
             <span className="sr-only">IqEngi</span>

@@ -34,8 +34,8 @@ const { id, title, imagenURL, descripcionCorta } = curso;
 
 <Layout2 title={`Curso ${title}`}>
 
-	<Navbar slot="navbar" client:only="react" />
-	<CardBanner_Curso curso={curso}/>
+	<Navbar slot="navbar" client:load />
+	<CardBanner_Curso curso={curso} client:load />
 
   <!-- Contenedor Principal -->
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
