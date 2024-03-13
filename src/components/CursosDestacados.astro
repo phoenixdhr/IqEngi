@@ -24,7 +24,7 @@ const recommendedCursos: Cursos = dataCursos
     {/* Mapeo de recommendedCursos para renderizar una tarjeta por cada curso */}
 
     {
-    recommendedCursos.map(({id, title, imagenURL, descripcionCorta} )=> {
+    recommendedCursos.map(({_id: id, title, imagenURL, descripcionCorta} )=> {
                         return  (
                             <Card
                                     id={id}

@@ -2,35 +2,32 @@
 // Importación de componentes y layouts necesarios
 import Layout2 from "../../layouts/Layout2.astro";
 import Navbar from "../../components/Navbar";
-import Section1 from "../../components/Section1.astro"; // No usado en el snippet proporcionado
-import Hero from "../../components/Hero"; // No usado en el snippet proporcionado
 
 // Importación de componentes específicos de cursos y secciones
-import CursosDestacados from "../../components/CursosDestacados.astro"; // No usado en el snippet proporcionado
-import Section3 from "../../components/Section3.astro"; // No usado en el snippet proporcionado
-import FondoHero from "../../components/FondoHero.astro"; // No usado en el snippet proporcionado
-
 import Footer from "../../components/Footer.astro";
 import { dataCursos } from "../../data/courses.ts"; // Importación de la fuente de datos de los cursos
 import CardBanner_Curso from "../../components/CardBanner_Curso.astro";
+
+// se desactiva el prerenderizado de la página, ya que esta pagina es dinámica y renderisada en el cliente (hybrid)
+export const prerender = false;
+
 
 // Obtención del parámetro 'id_curso' de la URL
 const { id_curso } = Astro.params;
 
 // Búsqueda del curso especificado por el ID. Si no se encuentra, se redirige a la página de error 404.
-const curso = dataCursos.find((curso) => Number(curso.id) === Number(id_curso));
+const curso = dataCursos.find((curso) => Number(curso._id) === Number(id_curso));
 if (!curso) {
   // Redirección a la página de error 404 si el curso no existe
   return Astro.redirect("/404");
 }
 
 // Extracción de propiedades del curso encontrado para su uso en el componente
-const { id, title, imagenURL, descripcionCorta } = curso;
+const { _id: id, title, imagenURL, descripcionCorta } = curso;
+
 
 
 ---
-
-
 
 <Layout2 title={`Curso ${title}`}>
 

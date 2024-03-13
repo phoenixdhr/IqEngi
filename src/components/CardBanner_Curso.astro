@@ -1,13 +1,14 @@
 ---
-import type {Curso} from '../utils/CursoType.ts'
+import type {Curso} from '../utils/CursoType'
+
+export const prerender = false;
 
 export interface Props {
     curso:Curso
   }
 
 	const {curso} = Astro.props
-
-	const {id, title, imagenURL, descripcionCorta, duracionHoras, instructor}=curso;
+	const {_id: id, title, imagenURL, descripcionCorta, duracionHoras, instructor}=curso;
 
 ---
 
@@ -22,6 +23,7 @@ export interface Props {
 			<h2 class="card-title" transition:name={`card-title-${id.toString()}`} >
 				{title}
 			</h2>
+
 
 			<p>{descripcionCorta}</p>
 			<p>Profesor: { `${instructor.nombre} ${instructor.apellidos}`}</p>
