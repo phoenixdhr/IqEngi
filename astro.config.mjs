@@ -8,6 +8,10 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   integrations: [react(), tailwind()],
   output: "hybrid",
-  adapter: vercel()
-
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+    maxDuration: 8,
+  }),
 });
