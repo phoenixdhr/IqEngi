@@ -16,7 +16,7 @@ export interface Usuario {
   hashContraseña: string;
   rol: RolUsuario[]; // Suponiendo que los roles sean representados por strings
   perfil: Perfil;
-  cursos_comprados_historial: id[]; // Array de IDs de cursos
+  cursos_comprados_historial: CursoComprado[]; // Array de IDs de cursos
   cursos_progreso: ProgresoCurso[]; // Array de objetos que representan el progreso en los cursos
 }
 
@@ -40,7 +40,7 @@ export interface CursoComprado  {
 
 export interface ProgresoCurso {
   cursoId: id; // ID del curso
-  modulosCompletados: id[]; // Podría ser un array de IDs de módulos
+  modulosCompletados: id[]; // Podría ser un array de IDs de módulos -> EstructuraProgramaria
   examenesEvaluacionesPasadas: boolean[]; // Suponiendo una representación simplificada con valores booleanos
   progresoTotal: number; // Porcentaje del total completado
 }
@@ -49,6 +49,7 @@ export interface ProgresoCurso {
 
 
 
+type nivel = 'Principiante' | 'Intermedio' | 'Avanzado';
 
 
 
@@ -57,7 +58,7 @@ export interface Curso {
   _id: id;
   title: string;
   descripcionCorta: string;
-  nivel: 'Principiante' | 'Intermedio' | 'Avanzado';
+  nivel: nivel;
   duracionHoras: number;
   imagenURL: string;
   instructor: Instructor;
@@ -115,11 +116,6 @@ export interface Reseña {
 
 
 
-// Detalle de las unidades o módulos educativos dentro de un curso.
-export interface UnidadEducativa {
-  title: string;
-  temas: string[]; // Esta estructura está bien si cada tema es simplemente un string. Si necesitas más detalle por tema, considera usar un objeto.
-}
 
 // Estructura de una lección dentro del curso, que incluye varias unidades educativas.
 export interface EstructuraProgramaria {
@@ -128,6 +124,11 @@ export interface EstructuraProgramaria {
   unidades: UnidadEducativa[]; // Aquí usas 'temas' para contener unidades educativas, considera renombrarlo a 'unidades' para mayor claridad.
 }
 
+// Detalle de las unidades o módulos educativos dentro de un curso.
+export interface UnidadEducativa {
+  title: string;
+  temas: string[]; // Esta estructura está bien si cada tema es simplemente un string. Si necesitas más detalle por tema, considera usar un objeto.
+}
 
 
 
