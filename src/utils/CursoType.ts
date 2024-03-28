@@ -1,172 +1,135 @@
-// Definiciones de tipos básicos para listas de strings. Estos están bien como están.
-export type Aprenderas = string[];
-export type Objetivos = string[];
-export type Especializacion = string[];
+// Definiciones de tipos básicos permanecen sin cambios.
+
 export type CompromisosEducativos = string[];
 
-type id = number;
-
-
+type id = string; // Cambiado a string para reflejar el uso de MongoDB ObjectId.
 
 export interface Usuario {
   _id: id;
   nombre: string;
   apellidos: string;
   email: string;
-  hashContraseña: string;
+  hashContraseña: string; // Ajuste de nombre para mantener consistencia
   rol: RolUsuario[]; // Suponiendo que los roles sean representados por strings
   perfil: Perfil;
-  cursos_comprados_historial: CursoComprado[]; // Array de IDs de cursos
-  cursos_progreso: ProgresoCurso[]; // Array de objetos que representan el progreso en los cursos
+  cursos_comprados_historial: CursoComprado[]; // Ajustado según la descripción
+  curso_progreso: id[] //id de Cursos
 }
 
 type RolUsuario = 'estudiante' | 'instructor' | 'editor' | 'administrador';
 type EstadoAccesoCurso = 'activo' | 'inactivo';
-
 
 export interface Perfil {
   bio: string;
   ubicacion: string;
   imagenURL: string;
   contacto: string;
-  intereses: string[]; // Array de intereses como strings
+  intereses: string[];
 }
 
 export interface CursoComprado  {
   cursoId: id;
-  fechaCompra: Date; // O podrías usar Date si trabajas con objetos de fecha en lugar de cadenas.
+  fechaCompra: Date;
   estadoAcceso: EstadoAccesoCurso;
 };
 
 export interface ProgresoCurso {
-  cursoId: id; // ID del curso
-  modulosCompletados: id[]; // Podría ser un array de IDs de módulos -> EstructuraProgramaria
-  examenesEvaluacionesPasadas: boolean[]; // Suponiendo una representación simplificada con valores booleanos
-  progresoTotal: number; // Porcentaje del total completado
+  _id: id;
+  usuarioId: id;
+  cursoId: id;
+  modulosCompletados: number[]; // Cambiado a reflejar IDs de módulos
+  examenesEvaluacionesPasadas: boolean[];
+  progresoTotal: number;
 }
-
-
-
-
 
 type nivel = 'Principiante' | 'Intermedio' | 'Avanzado';
 
-
-
-// Interface para los cursos, vinculando todos los elementos anteriores.
 export interface Curso {
   _id: id;
   title: string;
   descripcionCorta: string;
   nivel: nivel;
+  instructor: InstructorCurso,
   duracionHoras: number;
   imagenURL: string;
-  instructor: Instructor;
-  instructorId: id;
   precio: number;
-  descuentos?: number; // Considera especificar cómo se aplica este descuento, ¿es un porcentaje?
-  // precioDescontado?: number; // Podría calcularse automáticamente basado en el precio y descuentos.
+  descuentos?: number;
   calificacion: number;
-  testimonios: Testimonio[];
-  aprenderas: Aprenderas;
-  objetivos: Objetivos;
-  dirigidoA: string[]; // Lista de audiencias objetivo. Bien estructurado.
+  aprenderas: string[];
+  objetivos: string[];
+  dirigidoA: string[];
   contenido: EstructuraProgramaria[];
   fechaLanzamiento: Date;
-  categoriaIds: id[]; // Relacionar con categorías por ID es una buena práctica para mantener la normalización.
-  usuarios_inscritos: id[] // id de los usuarios inscritos
-}
+  categoriaIds: id[];
+  usuarios_inscritos: id[]; // Reflejando la relación con usuarios inscritos.
 
 
-// Testimonio de estudiantes sobre los cursos.
-export interface Testimonio {
-  usuarioId: id;
-  comentario: string;
-  calificacion: number,
-  fecha: Date; // Considera limitar este valor a un rango específico, por ejemplo, 1-5.
 }
 
 
 
-
-
-
-// Información detallada sobre el instructor de un curso.
-export interface Instructor {
-  _id:id
+// InstructorCurso y Instructor usan informacion duplicada
+type  InstructorCurso = {
+  _id: id;
   nombre: string;
   apellidos: string;
   profesion: string;
-  especializacion: Especializacion;
-  calificacionPromedio: number; // Igual que con Testimonio, podría ser útil limitar el rango.
-  resenas_instructor: Reseña[]; // Considera usar un array de objetos si necesitas almacenar más que textos de reseñas, por ejemplo, para incluir calificaciones de las reseñas o fechas.
+  especializacion: string[];
+}
+
+export interface Instructor {
+  _id: id;
+  nombre: string;
+  apellidos: string;
+  profesion: string;
+  especializacion: string[];
+  calificacionPromedio: number;
+	  pais: string;
+}
+
+export interface EstructuraProgramaria {
+  idModulo: number;
+  titleModulo: string;
+  unidades: UnidadEducativa[];
+}
+
+export interface UnidadEducativa {
+  title: string;
+  temas: string[];
 }
 
 
-export interface Reseña {
+export interface Testimonio {
+  _id: id;
+  cursoId: id;
   usuarioId: id;
   comentario: string;
   calificacion: number;
-  fecha: Date
-};
-
-
-
-
-
-
-
-
-// Estructura de una lección dentro del curso, que incluye varias unidades educativas.
-export interface EstructuraProgramaria {
-  idModulo: id;
-  titleModulo: string;
-  unidades: UnidadEducativa[]; // Aquí usas 'temas' para contener unidades educativas, considera renombrarlo a 'unidades' para mayor claridad.
-}
-
-// Detalle de las unidades o módulos educativos dentro de un curso.
-export interface UnidadEducativa {
-  title: string;
-  temas: string[]; // Esta estructura está bien si cada tema es simplemente un string. Si necesitas más detalle por tema, considera usar un objeto.
+  fecha: Date;
 }
 
 
-
-
-
-// Definición de Categorías - Esto está bien estructurado para una gestión flexible de categorías.
 export interface Categoria {
   _id: id;
   nombre: string;
-  descripcion?: string; // Opcional es una buena práctica para descripciones extendidas.
+  descripcion?: string;
 }
 
-
-
-
-
-
-
-// Lista única de categorías - Buena práctica para evitar duplicidades y facilitar la gestión.
-export const categoriasUnicas: Categoria[] = [
-  // La implementación aquí es correcta. Asegúrate de mantenerla actualizada con todas las categorías usadas.
-];
-
-
-
+export const categoriasUnicas: Categoria[] = [];
 
 type EstadoOrden = 'pendiente' | 'procesando' | 'completada' | 'cancelada' | 'reembolsada';
 
 export interface Orden {
   _id: id;
-  usuarioId: id; // id de usuario
-  cursos: id[]; // id de los cursos
+  usuarioId: id;
+  cursos: id[];
   fechaCompra: Date;
   montoTotal: number;
   estado: EstadoOrden;
 };
 
-
-
-
 export type Cursos = Array<Curso>;
+
+
+
+
